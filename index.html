@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Ditz Store</title>
+
+  <!-- FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#060816;
+      color:white;
+      overflow-x:hidden;
+      font-family:'Outfit',sans-serif;
+    }
+
+    /* BACKGROUND */
+    body::before{
+      content:'';
+      position:fixed;
+      width:500px;
+      height:500px;
+      background:#00ffee;
+      filter:blur(180px);
+      opacity:0.10;
+      top:-150px;
+      left:-100px;
+      z-index:-1;
+    }
+
+    body::after{
+      content:'';
+      position:fixed;
+      width:500px;
+      height:500px;
+      background:#7a5cff;
+      filter:blur(180px);
+      opacity:0.12;
+      bottom:-150px;
+      right:-100px;
+      z-index:-1;
+    }
+
+    /* NAVBAR */
+    nav{
+      width:100%;
+      padding:25px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:fixed;
+      top:0;
+      backdrop-filter:blur(15px);
+      background:rgba(5,8,20,0.4);
+      border-bottom:1px solid rgba(255,255,255,0.05);
+      z-index:999;
+    }
+
+    .logo{
+      font-family:'Syne',sans-serif;
+      font-size:28px;
+      font-weight:800;
+
+      background:linear-gradient(90deg,#00ffee,#7a5cff);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:#d7d7d7;
+      margin-left:25px;
+      transition:0.3s;
+      font-weight:500;
+    }
+
+    nav a:hover{
+      color:#00ffee;
+    }
+
+    /* HERO */
+    .hero{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:120px 8% 50px;
+      gap:50px;
+      flex-wrap:wrap;
+    }
+
+    .hero-text{
+      flex:1;
+      min-width:300px;
+      animation:fadeUp 1.2s ease;
+    }
+
+    .tag{
+      display:inline-block;
+      padding:10px 18px;
+      border-radius:50px;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.08);
+      color:#00ffee;
+      margin-bottom:25px;
+      font-size:14px;
+    }
+
+    .hero-text h1{
+      font-size:75px;
+      line-height:1.1;
+      margin-bottom:25px;
+      font-family:'Syne',sans-serif;
+      font-weight:800;
+    }
+
+    .gradient{
+      background:linear-gradient(90deg,#ffffff,#00ffee,#7a5cff);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .hero-text p{
+      color:#b6bdd1;
+      line-height:1.9;
+      margin-bottom:35px;
+      max-width:600px;
+      font-size:17px;
+    }
+
+    .buttons{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:16px 34px;
+      border-radius:18px;
+      text-decoration:none;
+      font-weight:600;
+      transition:0.4s ease;
+    }
+
+    .primary{
+      background:linear-gradient(135deg,#00ffee,#7a5cff);
+      color:white;
+      box-shadow:0 15px 35px rgba(122,92,255,0.35);
+    }
+
+    .primary:hover{
+      transform:translateY(-6px);
+    }
+
+    .secondary{
+      border:1px solid rgba(255,255,255,0.1);
+      color:white;
+      background:rgba(255,255,255,0.04);
+    }
+
+    .secondary:hover{
+      background:rgba(255,255,255,0.08);
+    }
+
+    /* HERO CARD */
+    .hero-card{
+      flex:1;
+      min-width:300px;
+      display:flex;
+      justify-content:center;
+      animation:fadeUp 1.5s ease;
+    }
+
+    .glass{
+      width:350px;
+      padding:35px;
+      border-radius:35px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      backdrop-filter:blur(20px);
+
+      box-shadow:
+      0 25px 50px rgba(0,0,0,0.35);
+    }
+
+    .glass h3{
+      font-size:28px;
+      margin-bottom:15px;
+    }
+
+    .glass p{
+      color:#b6bdd1;
+      line-height:1.8;
+      margin-bottom:25px;
+    }
+
+    .stats{
+      display:flex;
+      justify-content:space-between;
+      margin-top:25px;
+    }
+
+    .stats div h2{
+      color:#00ffee;
+      font-size:28px;
+    }
+
+    .stats div span{
+      color:#aaa;
+      font-size:14px;
+    }
+
+    /* PRODUK */
+    .produk{
+      padding:120px 8%;
+    }
+
+    .title{
+      text-align:center;
+      margin-bottom:70px;
+    }
+
+    .title h1{
+      font-size:55px;
+      font-family:'Syne',sans-serif;
+      margin-bottom:15px;
+    }
+
+    .title p{
+      color:#aab2c5;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:35px;
+    }
+
+    .card{
+      position:relative;
+      overflow:hidden;
+
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.06);
+
+      border-radius:35px;
+      padding:35px;
+
+      transition:0.5s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-12px);
+      border:1px solid rgba(0,255,238,0.3);
+
+      box-shadow:
+      0 20px 40px rgba(0,0,0,0.35);
+    }
+
+    .circle{
+      position:absolute;
+      width:180px;
+      height:180px;
+      background:linear-gradient(135deg,#00ffee,#7a5cff);
+      border-radius:50%;
+      opacity:0.12;
+      top:-70px;
+      right:-70px;
+    }
+
+    .icon{
+      width:70px;
+      height:70px;
+      border-radius:20px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-size:30px;
+
+      background:linear-gradient(135deg,#00ffee,#7a5cff);
+
+      margin-bottom:25px;
+    }
+
+    .card h2{
+      font-size:30px;
+      margin-bottom:15px;
+    }
+
+    .harga{
+      color:#00ffee;
+      font-size:42px;
+      font-weight:700;
+      margin-bottom:20px;
+    }
+
+    .card p{
+      color:#b8c0d3;
+      line-height:1.8;
+      margin-bottom:30px;
+    }
+
+    .buy{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      padding:16px;
+      border-radius:18px;
+
+      text-decoration:none;
+      color:white;
+      font-weight:600;
+
+      background:linear-gradient(135deg,#00ffee,#7a5cff);
+
+      transition:0.4s ease;
+    }
+
+    .buy:hover{
+      transform:scale(1.03);
+    }
+
+    /* FOOTER */
+    footer{
+      text-align:center;
+      padding:40px;
+      color:#8f98ac;
+      border-top:1px solid rgba(255,255,255,0.06);
+    }
+
+    /* ANIMASI */
+    @keyframes fadeUp{
+
+      from{
+        opacity:0;
+        transform:translateY(50px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+
+      .hero-text h1{
+        font-size:55px;
+      }
+
+      .title h1{
+        font-size:40px;
+      }
+
+      nav{
+        padding:20px 5%;
+      }
+
+      .hero,
+      .produk{
+        padding-left:5%;
+        padding-right:5%;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+
+    <div class="logo">
+      Langzstr
+    </div>
+
+    <div>
+      <a href="#">Home</a>
+      <a href="#produk">Produk</a>
+      <a href="#">Kontak</a>
+    </div>
+
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <div class="hero-text">
+
+      <div class="tag">
+        ✦ LANGZ DIGITAL
+      </div>
+
+      <h1>
+        Jual File Game
+        <span class="gradient">
+          Gacor & Work
+        </span>
+      </h1>
+
+      <p>
+        Website jual file game yang gacor dan work      </p>
+
+      <div class="buttons">
+
+        <a href="#produk" class="btn primary">
+          Mulai Belanja
+        </a>
+
+        <a href="#" class="btn secondary">
+          Explore
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- CARD HERO -->
+    <div class="hero-card">
+
+      <div class="glass">
+
+        <h3>Premium </h3>
+
+        <p>
+          File game yang gacor
+        </p>
+
+        <div class="stats">
+
+          <div>
+            <h2>500+</h2>
+            <span>Customer</span>
+          </div>
+
+          <div>
+            <h2>5</h2>
+            <span>Produk</span>
+          </div>
+
+          <div>
+            <h2>4.9</h2>
+            <span>Rating</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PRODUK -->
+  <section class="produk" id="produk">
+
+    <div class="title">
+
+      <h1>
+        Produk File vip
+      </h1>
+
+      <p>
+        Pilih produk file vip yang ingin kamu beli
+      </p>
+
+    </div>
+
+    <div class="grid">
+
+      <!-- CARD 1 -->
+      <div class="card">
+
+        <div class="circle"></div>
+
+        <div class="icon">
+          🎬
+        </div>
+
+        <h2>DRAG HS</h2>
+
+        <div class="harga">
+          Rp10K
+        </div>
+
+        <p>
+          Untuk mempermudah headshot        </p>
+
+        <a
+        class="buy"
+        href="https://Wa.me/6285133309122?text=MIN+MAU+BUY+FILE+DRAGHS"
+        target="_blank">
+
+          Beli Sekarang
+
+        </a>
+
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="card">
+
+        <div class="circle"></div>
+
+        <div class="icon">
+          💻
+        </div>
+
+        <h2>AIMHEAD</h2>
+
+        <div class="harga">
+          Rp15k
+        </div>
+
+        <p>
+          Untuk mempermudah headshot
+        </p>
+
+        <a
+        class="buy"
+        href="https://Wa.me/6285133309122?text=MIN+MAU+BUY+FILE+AIMHEAD"
+        target="_blank">
+
+          Beli Sekarang
+
+        </a>
+
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="card">
+
+        <div class="circle"></div>
+
+        <div class="icon">
+          🎨
+        </div>
+
+        <h2>BODYLOCK</h2>
+
+        <div class="harga">
+          Rp15K
+        </div>
+
+        <p>
+          AIM LEBIH ON POINT KE BADAN 
+        </p>
+
+        <a
+        class="buy"
+        href="https://Wa.me/6285133309122?text=MIN+MAU+BUY+FILE+BODYLOCK"
+        target="_blank">
+
+          Beli Sekarang
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Langzstore • Modern Digital Marketplace
+  </footer>
+
+</body>
+</html>
